@@ -10,12 +10,7 @@ This project solves problem **CV-1-26**. The program processes synthetic images 
 
 - Reads an image of a circle (any location, size, and color contrast against the background).  
 - Generates a **binary mask** where the circle is white and the background is black.  
-- Calculates the **roundness** of detected objects using the formula:  
-
-\[
-\text{Circularity} = \frac{4 \pi \cdot \text{Area}}{\text{Perimeter}^2}
-\]
-
+- Calculates the **roundness** of detected objects using the formula: 4𝝅 * S(object) / P(object) ^ 2
 - Determines which object is the actual circle based on the highest circularity value.  
 - Computes and prints the **area of the circle in pixels**.  
 - Saves the binary mask as a PNG file: <original_filename>_bin_mask.png
@@ -33,12 +28,10 @@ python3 main.py
 Suppose you have an image circle.png in the project directory:
 ```bash
 python3 main.py
-red.png
+Enter the file name with extension: red.png
+Object area 29171 pixels
+The binary mask red_bin_mask.png will be saved in the same directory.
 ```
-## Output:
-Object area 314 pixels
-The binary mask circle_bin_mask.png will be saved in the same directory.
-
 ## Dependencies
 The program requires the following Python packages:
 1. opencv-python
