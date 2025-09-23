@@ -8,6 +8,7 @@ import sys
 
 def circular_object_circularity(binary_mask):
     """
+    
     Estimate the circularity of the largest white object in a binary mask.
 
     Circularity is a measure of how close a shape is to a perfect circle,
@@ -52,34 +53,56 @@ def circular_object_circularity(binary_mask):
     return circularity
 
 
+def main():
+    """
+    Loads an image, converts it to a binary mask, determines which version of the mask (original or inverted)
+    contains a more circular object, visualizes the selected mask, saves it as an image, and calculates the area
+    of the object in pixels.
 
-st = input("Enter the file name with extension: ")
-img = cv2.imread(st)
+    Steps performed:
+    1. Prompts the user to input the filename of an image.
+    2. Loads the image using OpenCV.
+    3. If the image is not found, the program exits with an error message.
+    4. Converts the image to grayscale and then binarizes it using Otsu's thresholding method.
+    5. Calculates the circularity of the object in both the original and inverted masks.
+    6. Selects the mask where the object is more circular (closer to a perfect circle).
+    7. Visualizes and saves the selected binary mask as a PNG file.
+    8. Calculates and prints the area of the white object (number of non-zero pixels) in the binary mask.
 
-if img is None:
-    print("File not found!")
-    sys.exit(1)
+    Output:
+    - Saves the binary mask image to disk.
+    - Prints the object area (in pixels) to the console.
+    """
+    st = input("Enter the file name with extension: ")
+    img = cv2.imread(st)
 
-# Split filename and extension
-filename, _ = os.path.splitext(st)
+    if img is None:
+        print("File not found!")
+        sys.exit(1)
 
-# Grayscale conversion and binarization
-gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-_, mask = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
+    # Split filename and extension
+    filename, _ = os.path.splitext(st)
 
-circ1 = circular_object_circularity(mask)
-circ2 = circular_object_circularity(cv2.bitwise_not(mask))
+    # Grayscale conversion and binarization
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    _, mask = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
 
-# We leave the version where the object is "rounder"
-if circ2 > circ1:
-    mask = cv2.bitwise_not(mask)
+    circ1 = circular_object_circularity(mask)
+    circ2 = circular_object_circularity(cv2.bitwise_not(mask))
 
-# Visualization
-matplotlib.pyplot.imshow(mask, cmap='gray')
-matplotlib.pyplot.axis('off')
-matplotlib.pyplot.title("Binary Mask")
-matplotlib.pyplot.savefig(filename + "_bin_mask.png", bbox_inches='tight', pad_inches=0)
+    # We leave the version where the object is "rounder"
+    if circ2 > circ1:
+        mask = cv2.bitwise_not(mask)
 
-# Calculating the area of a white object
-area = numpy.count_nonzero(mask) 
-print(f"Object area {area} pixels")
+    # Visualization
+    matplotlib.pyplot.imshow(mask, cmap='gray')
+    matplotlib.pyplot.axis('off')
+    matplotlib.pyplot.title("Binary Mask")
+    matplotlib.pyplot.savefig(filename + "_bin_mask.png", bbox_inches='tight', pad_inches=0)
+
+    # Calculating the area of a white object
+    area = numpy.count_nonzero(mask) 
+    print(f"Object area {area} pixels")
+
+if __name__ == "__main__":
+    main()
