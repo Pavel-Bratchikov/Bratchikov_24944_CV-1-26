@@ -7,7 +7,6 @@ This project solves problem **CV-1-26**. The program processes synthetic images 
 ---
 
 ## Features
-
 - Reads an image of a circle (any location, size, and color contrast against the background).  
 - Generates a **binary mask** where the circle is white and the background is black.  
 - Calculates the **roundness** of detected objects using the formula: 4𝝅 * S(object) / P(object) ^ 2
@@ -18,6 +17,18 @@ This project solves problem **CV-1-26**. The program processes synthetic images 
 - ## Usage
 1. Place the image file in the same directory as the program, or provide the full path.  
 2. Run the program:  
+=======
+- Reads an image of a circle (any location, size, and color contrast against the background). 
+- Generates a **binary mask** where the circle is white and the background is black. 
+- Calculates the **roundness** of detected objects using the formula: 4𝝅 * S(object) / P(object) ^ 2
+- Determines which object is the actual circle based on the highest circularity value. 
+- Computes and prints the **area of the circle in pixels**. 
+- Saves the binary mask as a PNG file: <original_filename>_bin_mask.png
+- 
+- ## Usage
+1. Place the image file in the same directory as the program, or provide the full path. 
+2. Run the program: 
+>>>>>>> 267e55d (Small changes)
 
 ```bash
 python3 main.py
