@@ -32,7 +32,7 @@ python3 main.py
 3. Enter the filename (with extension) when prompted.
 4. The program outputs the area of the circle in pixels and saves the binary mask in the same directory.
 ## Example
-Suppose you have an image circle.png in the project directory:
+Suppose you have an image red.png in the project directory:
 ```bash
 python3 main.py
 Enter the file name with extension: red.png
