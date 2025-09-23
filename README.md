@@ -37,6 +37,7 @@ The program requires the following Python packages:
 1. opencv-python
 2. numpy
 3. matplotlib
+
 You can enable dependencies by going to the project directory in the terminal and entering:
 ```bash
 source venv/bin/activate
