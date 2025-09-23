@@ -37,8 +37,8 @@ Suppose you have an image red.png in the project directory:
 python3 main.py
 Enter the file name with extension: red.png
 Object area 29171 pixels
-The binary mask red_bin_mask.png will be saved in the same directory.
 ```
+The binary mask red_bin_mask.png will be saved in the same directory.
 ## Dependencies
 The program requires the following Python packages:
 1. opencv-python
