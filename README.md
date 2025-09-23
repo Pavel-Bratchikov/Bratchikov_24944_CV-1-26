@@ -47,7 +47,7 @@ The program requires the following Python packages:
 
 You can enable dependencies by going to the project directory in the terminal and entering:
 ```bash
-source venv/bin/activate
+pip install -r requirements.txt
 ```
 ## Notes
 1. Only a single circle per image is supported.
